@@ -26,15 +26,22 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp">
 
         <EditText
-            android:layout_marginTop="16dp"
             android:inputType="date"
+            android:id="@+id/idDate"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:hint="Enter a date"
+            android:hint="@string/date_hint"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:text="@string/button_date"
             />
 
     </LinearLayout>
@@ -43,7 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        tools:text="Picture of the day"
+        android:text="@string/button_text"
         android:layout_marginTop="32dp"
         />
 
