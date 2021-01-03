@@ -3,4 +3,7 @@
     <string name="date_hint">Entrer une date</string>
     <string name="button_text">Photos du jour</string>
     <string name="button_date">send -></string>
+    <string name="ok">OK</string>
+    <string name="cancel">Annuler</string>
+    <string name="dialog_no_network">\"y a pas de reseaux\"</string>
 </resources>

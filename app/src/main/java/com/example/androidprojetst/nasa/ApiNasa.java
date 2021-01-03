@@ -1,13 +1,15 @@
 package com.example.androidprojetst.nasa;
 
-public class ApiNasa {
-    private Fields fields;
+import java.util.List;
 
-    public Fields getFields() {
-        return fields;
+public class ApiNasa {
+    private List<Records> records;
+
+    public List<Records> getRecords() {
+        return records;
     }
 
-    public void setFields(Fields fields) {
-        this.fields = fields;
+    public void setRecords(List<Records> records) {
+        this.records = records;
     }
 }

@@ -3,16 +3,16 @@ package com.example.androidprojetst.nasa;
 import java.util.Date;
 
 public class Fields {
-    private Date date;
+    private String date;
     private String explanation;
     private String title;
     private String urlImage;
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

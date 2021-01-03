@@ -9,6 +9,7 @@
     >
 
     <TextView
+        android:id="@+id/textViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="Stars from Eagle's Eggs"
@@ -25,10 +26,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Date: "
+            android:text="Date: "
             android:layout_gravity="center_horizontal"/>
 
         <TextView
+            android:id="@+id/textViewDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="1999-05-02"
@@ -37,6 +39,7 @@
     </LinearLayout>
 
     <ImageView
+        android:id="@+id/imageViewUrl"
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="500dp"
@@ -44,6 +47,7 @@
         tools:src="@drawable/pillars3_hst"/>
 
     <TextView
+        android:id="@+id/textViewExplanation"
         android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
