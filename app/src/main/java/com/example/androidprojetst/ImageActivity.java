@@ -3,6 +3,7 @@ package com.example.androidprojetst;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
@@ -48,109 +49,86 @@ public class ImageActivity extends AppCompatActivity {
             return;
         }
 
-        if (getIntent().getExtras() != null) {
-            String Date = getIntent().getExtras().getString("Date");
-            boolean isDate = getIntent().getExtras().getBoolean("isDate");
+        Intent intent = getIntent();
 
-            if(isDate) {
-                RequestQueue queue = Volley.newRequestQueue(this);
-                String url = Constant.URL + "date=" + Date;
+        boolean isDate = intent.getExtras().getBoolean("isDate");
+        String dateUrl = intent.getStringExtra("dateUrl");
+        //Log.e("params", String.valueOf(isDate));
+        //Log.e("dateUrl", String.valueOf(dateUrl));
 
-                StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                        new Response.Listener<String>() {
-                            @SuppressLint("StringFormatInvalid")
-                            @Override
-                            public void onResponse(String response) {
-                                Log.e("volley", response);
+        if(isDate) {
+            RequestQueue queue = Volley.newRequestQueue(this);
+            String url = Constant.URL + "&date=" + dateUrl;
 
-                                ApiNasa api = new Gson().fromJson(response, ApiNasa.class);
+            // Request a string response from the provided URL.
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                    new Response.Listener<String>() {
+                        @SuppressLint("StringFormatInvalid")
+                        @Override
+                        public void onResponse(String response) {
+                            Log.e("volley", response);
 
-                                List<Records> records = api.getRecords();
+                            parseJson(response);
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    String json = new String((error.networkResponse.data));
+                    Log.e("volley", error.toString());
+                    parseJson(json);
+                }
+            });
 
-                                if (api.getRecords() != null && api.getRecords().size() > 0) {
+            // Add the request to the RequestQueue.
+            queue.add(stringRequest);
+        } else {
+            RequestQueue queue = Volley.newRequestQueue(this);
+            String url = Constant.URL;
 
-                                    for (int i=0; i<records.size(); i++) {
+            // Request a string response from the provided URL.
+            StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                    new Response.Listener<String>() {
+                        @SuppressLint("StringFormatInvalid")
+                        @Override
+                        public void onResponse(String response) {
+                            Log.e("volley", response);
 
-                                        Fields fields = records.get(i).getFields();
+                            parseJson(response);
+                        }
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    String json = new String((error.networkResponse.data));
+                    Log.e("volley", error.toString());
+                    parseJson(json);
+                }
+            });
 
-                                        textViewTitle.setText(fields.getTitle());
-                                        textViewDate.setText(fields.getDate());
-                                        textViewExplanation.setText(fields.getExplanation());
-
-                                        Picasso.get().load(fields.getUrlImage()).into(imageViewUrl, new Callback() {
-                                            @Override
-                                            public void onSuccess() {
-
-                                            }
-
-                                            @Override
-                                            public void onError(Exception e) {
-
-                                            }
-                                        });
-                                    }
-                                }
-                            }
-                        }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        String json = new String((error.networkResponse.data));
-                        Log.e("volley", json);
-                    }
-                });
-
-                // Add the request to the RequestQueue.
-                queue.add(stringRequest);
-            } else {
-                RequestQueue queue = Volley.newRequestQueue(this);
-                String url = Constant.URL;
-
-                StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                        new Response.Listener<String>() {
-                            @SuppressLint("StringFormatInvalid")
-                            @Override
-                            public void onResponse(String response) {
-                                Log.e("volley", response);
-
-                                ApiNasa api = new Gson().fromJson(response, ApiNasa.class);
-
-                                List<Records> records = api.getRecords();
-
-                                if (api.getRecords() != null && api.getRecords().size() > 0) {
-
-                                    for (int i=0; i<records.size(); i++) {
-
-                                        Fields fields = records.get(i).getFields();
-
-                                        textViewTitle.setText(fields.getTitle());
-                                        textViewDate.setText(fields.getDate());
-                                        textViewExplanation.setText(fields.getExplanation());
-
-                                        Picasso.get().load(fields.getUrlImage()).into(imageViewUrl, new Callback() {
-                                            @Override
-                                            public void onSuccess() {
-
-                                            }
-
-                                            @Override
-                                            public void onError(Exception e) {
-
-                                            }
-                                        });
-                                    }
-                                }
-                            }
-                        }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        String json = new String((error.networkResponse.data));
-                        Log.e("volley", json);
-                    }
-                });
-
-                // Add the request to the RequestQueue.
-                queue.add(stringRequest);
-            }
-            }
+            // Add the request to the RequestQueue.
+            queue.add(stringRequest);
         }
+    }
+
+
+    private void parseJson(String response) {
+        // Traitement du JSON
+        ApiNasa api = new Gson().fromJson(response, ApiNasa.class);
+
+        textViewTitle.setText(api.getTitle());
+        textViewDate.setText(api.getDate());
+        textViewExplanation.setText(api.getExplanation());
+        Log.e("Image", api.getUrl());
+
+        Picasso.get().load(api.getUrl()).into(imageViewUrl, new Callback() {
+            @Override
+            public void onSuccess() {
+
+            }
+
+            @Override
+            public void onError(Exception e) {
+
+            }
+        });
+    }
 }

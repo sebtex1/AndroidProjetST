@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -21,8 +22,9 @@ public class HomeActivity extends AppCompatActivity {
         Intent intentDate = new Intent(HomeActivity.this, ImageActivity.class);
 
         editTextDate = findViewById(R.id.idDate);
-        intentDate.putExtra("Date", editTextDate.getText());
+        Log.e("text date", String.valueOf(editTextDate.getText()));
         intentDate.putExtra("isDate", true);
+        intentDate.putExtra("dateUrl", editTextDate.getText().toString());
 
         startActivity(intentDate);
     }
