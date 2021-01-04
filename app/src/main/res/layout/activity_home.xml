@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Pictures from NASA"
+        android:text="@string/pictures_from_nasa"
         />
 
     <LinearLayout
@@ -41,7 +41,7 @@
             android:onClick="showDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
             android:text="@string/button_date"
             />
 
