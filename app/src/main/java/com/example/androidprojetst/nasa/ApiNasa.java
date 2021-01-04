@@ -7,6 +7,7 @@ public class ApiNasa {
     private String explanation;
     private String title;
     private String url;
+    private String hdurl;
     private String media_type;
 
     public String getDate() {
@@ -39,6 +40,14 @@ public class ApiNasa {
 
     public void setUrlImage(String urlImage) {
         this.url = urlImage;
+    }
+
+    public String getHdurl() {
+        return hdurl;
+    }
+
+    public void setHdurl(String hdurl) {
+        this.hdurl = hdurl;
     }
 
     public String getMedia_type() {
