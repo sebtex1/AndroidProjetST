@@ -6,6 +6,9 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.net.Uri;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -32,7 +35,8 @@ public class ImageActivity extends AppCompatActivity {
     private TextView textViewTitle;
     private TextView textViewDate;
     private ImageView imageViewUrl;
-    private  TextView textViewExplanation;
+    private TextView textViewExplanation;
+    private TextView invisibleBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +47,7 @@ public class ImageActivity extends AppCompatActivity {
         textViewDate = findViewById(R.id.textViewDate);
         imageViewUrl = findViewById(R.id.imageViewUrl);
         textViewExplanation = findViewById(R.id.textViewExplanation);
+        invisibleBox = findViewById(R.id.invisibleBox);
 
         if(!Network.isNetworkAvailable(ImageActivity.this)) {
             FastDialog.showDialog(ImageActivity.this, FastDialog.SIMPLE_DIALOG, getString(R.string.dialog_no_network));
@@ -117,6 +122,7 @@ public class ImageActivity extends AppCompatActivity {
         textViewTitle.setText(api.getTitle());
         textViewDate.setText(api.getDate());
         textViewExplanation.setText(api.getExplanation());
+        invisibleBox.setText(api.getUrl());
         Log.e("Image", api.getUrl());
 
         Picasso.get().load(api.getUrl()).into(imageViewUrl, new Callback() {
@@ -130,5 +136,11 @@ public class ImageActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void web(View view) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(invisibleBox.getText().toString()));
+        startActivity(intent);
     }
 }
