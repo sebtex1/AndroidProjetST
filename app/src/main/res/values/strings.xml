@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Android Projet ST</string>
-    <string name="date_hint">Entrer une date</string>
-    <string name="button_text">Photos du jour</string>
+    <string name="date_hint">aaaa-mm-dd</string>
+    <string name="button_text">Contenu du jour</string>
     <string name="button_date">send -></string>
     <string name="ok">OK</string>
     <string name="cancel">Annuler</string>
@@ -9,4 +9,5 @@
     <string name="date">Date:</string>
     <string name="pictures_from_nasa">Pictures from NASA</string>
     <string name="watch_media">Accéder au média</string>
+    <string name="textViewDate">Entrez une date</string>
 </resources>

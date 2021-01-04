@@ -23,14 +23,20 @@
         android:text="@string/pictures_from_nasa"
         />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/textViewDate"
+        />
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp">
+        android:layout_marginTop="8dp">
 
         <EditText
-            android:inputType="date"
             android:id="@+id/idDate"
             android:layout_weight="1"
             android:layout_width="0dp"
