@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">NASA Pictures</string>
+    <string name="date_hint">yyyy-mm-dd</string>
+    <string name="button_text">Content of the day</string>
+    <string name="cancel">Cancel</string>
+    <string name="dialog_no_network">no networks available</string>
+    <string name="date">Date:</string>
+    <string name="textViewDate">Enter a date</string>
+    <string name="watch_media">Access to the media</string>
+</resources>
