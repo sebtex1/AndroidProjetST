@@ -6,19 +6,20 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@color/white"
+    android:background="@drawable/splachscreen_galaxy"
     tools:context=".MainActivity">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/logo_nasa"
+        android:layout_width="301dp"
+        android:layout_height="97dp"
+        android:src="@drawable/nasa_worm"
         />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/pictures_from_nasa"
+        style="@style/SplashTitle"
         />
 
 </LinearLayout>

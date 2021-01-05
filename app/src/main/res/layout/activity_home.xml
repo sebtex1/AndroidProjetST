@@ -10,17 +10,17 @@
     tools:context=".HomeActivity">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="352dp"
+        android:layout_height="125dp"
         android:layout_gravity="center"
-        android:src="@drawable/logo_nasa"
-        />
+        android:src="@drawable/nasa_worm" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/pictures_from_nasa"
+        style="@style/SplashTitle"
         />
 
     <TextView
@@ -43,12 +43,14 @@
             android:layout_height="wrap_content"
             android:hint="@string/date_hint"
             />
+
         <Button
-            android:onClick="showDate"
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:onClick="showDate"
             android:text="@string/button_date"
+
             />
 
     </LinearLayout>
