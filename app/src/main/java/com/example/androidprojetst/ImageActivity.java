@@ -53,6 +53,7 @@ public class ImageActivity extends AppCompatActivity {
         invisibleBox = findViewById(R.id.invisibleBox);
         textViewNoImage = findViewById(R.id.textViewNoImage);
 
+        // Vérification de la connexion
         if(!Network.isNetworkAvailable(ImageActivity.this)) {
             FastDialog.showDialog(ImageActivity.this, FastDialog.SIMPLE_DIALOG, getString(R.string.dialog_no_network));
             return;
@@ -65,11 +66,11 @@ public class ImageActivity extends AppCompatActivity {
         //Log.e("params", String.valueOf(isDate));
         //Log.e("dateUrl", String.valueOf(dateUrl));
 
+        // Réalise la requête à l'API si la date à était renseigner
         if(isDate) {
             RequestQueue queue = Volley.newRequestQueue(this);
             String url = Constant.URL + "&date=" + dateUrl;
 
-            // Request a string response from the provided URL.
             StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                     new Response.Listener<String>() {
                         @SuppressLint("StringFormatInvalid")
@@ -88,8 +89,8 @@ public class ImageActivity extends AppCompatActivity {
                 }
             });
 
-            // Add the request to the RequestQueue.
             queue.add(stringRequest);
+        // Si la date n'a pas était renseigner réaliser une requête avec le contenu du jour
         } else {
             RequestQueue queue = Volley.newRequestQueue(this);
             String url = Constant.URL;
@@ -118,14 +119,15 @@ public class ImageActivity extends AppCompatActivity {
         }
     }
 
-
     private void parseJson(String response) {
         // Traitement du JSON
         ApiNasa api = new Gson().fromJson(response, ApiNasa.class);
 
+        // Attribut les valeurs du JSON aux éléments de Image Activity
         textViewTitle.setText(api.getTitle());
         textViewDate.setText(api.getDate());
         textViewExplanation.setText(api.getExplanation());
+        // Permet de stocker l'URL des images ou vidéos
         invisibleBox.setText(api.getUrl());
         Log.e("Image", api.getUrl());
 
@@ -147,6 +149,7 @@ public class ImageActivity extends AppCompatActivity {
         }
     }
 
+    // Permet de récupérer l'URL des images et vidéos sans l'afficher à l'utilisateur
     public void web(View view) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.parse(invisibleBox.getText().toString()));

@@ -8,5 +8,5 @@
     <string name="textViewDate">Enter a date</string>
     <string name="watch_media">Access to the media</string>
     <string name="textViewNoImage">The content is not an image\nClick the button below to access it</string>
-    <string name="fastDialogue_wrongDate">invalid date\nIt must be between 1995/06/16 and today</string>
+    <string name="fastDialogue_wrongDate">Invalid date\nIt must be between 1995/06/16 and today</string>
 </resources>
