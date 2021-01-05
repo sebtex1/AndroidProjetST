@@ -5,7 +5,7 @@
     <string name="button_date" translatable="false">-></string>
     <string name="ok" translatable="false">OK</string>
     <string name="cancel">Annuler</string>
-    <string name="dialog_no_network">\"y a pas de reseaux\"</string>
+    <string name="dialog_no_network">\"hors connexion\"</string>
     <string name="date">Date:</string>
     <string name="pictures_from_nasa" translatable="false">Pictures</string>
     <string name="watch_media">Accéder au média</string>
