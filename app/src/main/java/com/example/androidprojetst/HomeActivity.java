@@ -11,16 +11,18 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class HomeActivity extends AppCompatActivity {
 
     private EditText editTextDate;
     private DatePickerDialog picker;
-    private Calendar calendar;
-    private SimpleDateFormat format_date;
-    private String current_date;
+    private Date current_date;
+    private String date_string;
+    private Date oldest_date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,22 +37,42 @@ public class HomeActivity extends AppCompatActivity {
                 final Calendar cldr = Calendar.getInstance();
                 int day = cldr.get(Calendar.DAY_OF_MONTH);
                 int month = cldr.get(Calendar.MONTH);
-                int year = cldr.get(Calendar.YEAR);
+                int year1 = cldr.get(Calendar.YEAR);
                 // date picker dialog
                 picker = new DatePickerDialog(HomeActivity.this,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                                calendar = Calendar.getInstance();
-                                format_date=new SimpleDateFormat("yyyy-MM-dd");
-                                current_date= format_date.format(calendar.getTime());
-                                editTextDate.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+                                SimpleDateFormat format_date = new SimpleDateFormat("yyyy-MM-dd");
 
-                                if(current_date.compareTo(editTextDate.getText().toString()) < 0 ){
-                                    editTextDate.setText(current_date);
+                                String old_date= (1995 + "-" + (6 + 1)+ "-" + 16);
+                                try {
+                                    oldest_date=format_date.parse(old_date);
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+
+                                date_string = (year1 + "-" + (month + 1)+ "-" + day);
+                                try {
+                                    current_date= format_date.parse(date_string);
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+
+                                editTextDate.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
+                                Date date_user = null;
+                                try {
+                                    date_user = format_date.parse(editTextDate.getText().toString());
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+
+
+                                if(current_date.before(date_user) || oldest_date.after(date_user)){
+                                    editTextDate.setText(date_string);
                                 }
                             }
-                        }, year, month, day);
+                        }, year1, month, day);
                 picker.show();
             }
         });
