@@ -30,6 +30,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import static android.view.View.VISIBLE;
+
 public class ImageActivity extends AppCompatActivity {
 
     private TextView textViewTitle;
@@ -128,7 +130,7 @@ public class ImageActivity extends AppCompatActivity {
         Log.e("Image", api.getUrl());
 
         if(!api.getMedia_type().equals("image")){
-            textViewNoImage.setVisibility(View.VISIBLE);
+            textViewNoImage.setVisibility(VISIBLE);
         }
         else{
         Picasso.get().load(api.getUrl()).into(imageViewUrl, new Callback() {
