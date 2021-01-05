@@ -12,6 +12,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Timer mytimer;
 
+    //écran de chargement
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

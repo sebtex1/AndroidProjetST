@@ -11,4 +11,5 @@
     <string name="watch_media">Accéder au média</string>
     <string name="textViewDate">Entrez une date</string>
     <string name="textViewNoImage">Le contenu n\'est pas une image\nCliquez sur le bouton ci-dessous pour y avoir accès</string>
+    <string name="fastDialogue_wrongDate">Date invalide\nElle doit etre entre 1995/06/16 et la date d\'aujourd\'hui</string>
 </resources>

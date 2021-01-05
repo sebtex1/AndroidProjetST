@@ -2,6 +2,7 @@ package com.example.androidprojetst;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +11,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+
+import com.example.androidprojetst.utils.FastDialog;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -34,6 +37,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                //Instanciation d'un calendrier pour récupérer la date d'aujourd'hui
                 final Calendar cldr = Calendar.getInstance();
                 int day = cldr.get(Calendar.DAY_OF_MONTH);
                 int month = cldr.get(Calendar.MONTH);
@@ -41,17 +45,21 @@ public class HomeActivity extends AppCompatActivity {
                 // date picker dialog
                 picker = new DatePickerDialog(HomeActivity.this,
                         new DatePickerDialog.OnDateSetListener() {
+                            // On lance le calendrier quand on veut saisir une date
                             @Override
                             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                //Le format de la date (celui utilisé dans la requete api)
                                 SimpleDateFormat format_date = new SimpleDateFormat("yyyy-MM-dd");
 
-                                String old_date= (1995 + "-" + (6 + 1)+ "-" + 16);
+                                //creation de la date minimale de l'api
+                                String old_date= (1995 + "-" + (6 + 1)+ "-" + 16);  //on fait le mois +1 car les mois vont de 0 à 11
                                 try {
-                                    oldest_date=format_date.parse(old_date);
+                                    oldest_date=format_date.parse(old_date);    //String to Date
                                 } catch (ParseException e) {
                                     e.printStackTrace();
                                 }
 
+                                //creation de la date d'aujourd'hui
                                 date_string = (year1 + "-" + (month + 1)+ "-" + day);
                                 try {
                                     current_date= format_date.parse(date_string);
@@ -59,6 +67,7 @@ public class HomeActivity extends AppCompatActivity {
                                     e.printStackTrace();
                                 }
 
+                                //récupération de la date entré par l'utilisateur
                                 editTextDate.setText(year + "-" + (monthOfYear + 1) + "-" + dayOfMonth);
                                 Date date_user = null;
                                 try {
@@ -67,8 +76,10 @@ public class HomeActivity extends AppCompatActivity {
                                     e.printStackTrace();
                                 }
 
-
+                                //Se lance si la date n'est pas comprise entre 1995/06/16 et aujourd'hui
                                 if(current_date.before(date_user) || oldest_date.after(date_user)){
+                                    //message qui averti l'utilisateur
+                                    FastDialog.showDialog(HomeActivity.this, FastDialog.SIMPLE_DIALOG, getString(R.string.fastDialogue_wrongDate));
                                     editTextDate.setText(date_string);
                                 }
                             }
@@ -78,6 +89,7 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
+    //se lance si l'utilisateur présise une date
     public void showDate(View view) {
         Intent intentDate = new Intent(HomeActivity.this, ImageActivity.class);
 
@@ -90,6 +102,7 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(intentDate);
     }
 
+    //Si aucune date n'est renseigné lance le contenu du jour
     public void showToday(View view) {
         Intent intentToday = new Intent(HomeActivity.this, ImageActivity.class);
 
