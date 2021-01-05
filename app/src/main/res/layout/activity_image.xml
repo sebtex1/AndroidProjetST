@@ -41,6 +41,15 @@
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/textViewNoImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:text="@string/textViewNoImage"
+            android:layout_marginTop="10dp"
+            />
+
         <ImageView
             android:id="@+id/imageViewUrl"
             android:layout_marginTop="10dp"

@@ -37,6 +37,7 @@ public class ImageActivity extends AppCompatActivity {
     private ImageView imageViewUrl;
     private TextView textViewExplanation;
     private TextView invisibleBox;
+    private TextView textViewNoImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +49,7 @@ public class ImageActivity extends AppCompatActivity {
         imageViewUrl = findViewById(R.id.imageViewUrl);
         textViewExplanation = findViewById(R.id.textViewExplanation);
         invisibleBox = findViewById(R.id.invisibleBox);
+        textViewNoImage = findViewById(R.id.textViewNoImage);
 
         if(!Network.isNetworkAvailable(ImageActivity.this)) {
             FastDialog.showDialog(ImageActivity.this, FastDialog.SIMPLE_DIALOG, getString(R.string.dialog_no_network));
@@ -125,6 +127,10 @@ public class ImageActivity extends AppCompatActivity {
         invisibleBox.setText(api.getUrl());
         Log.e("Image", api.getUrl());
 
+        if(!api.getMedia_type().equals("image")){
+            textViewNoImage.setVisibility(View.VISIBLE);
+        }
+        else{
         Picasso.get().load(api.getUrl()).into(imageViewUrl, new Callback() {
             @Override
             public void onSuccess() {
@@ -136,6 +142,7 @@ public class ImageActivity extends AppCompatActivity {
 
             }
         });
+        }
     }
 
     public void web(View view) {
