@@ -10,5 +10,5 @@
     <string name="pictures_from_nasa" translatable="false">Pictures</string>
     <string name="watch_media">Accéder au média</string>
     <string name="textViewDate">Entrez une date</string>
-    <string name="textViewNoImage">Le contenu n\'est pas une image</string>
+    <string name="textViewNoImage">Le contenu n\'est pas une image\nCliquez sur le bouton ci-dessous pour y avoir accès</string>
 </resources>

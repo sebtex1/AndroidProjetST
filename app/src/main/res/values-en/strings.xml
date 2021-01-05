@@ -7,5 +7,5 @@
     <string name="date">Date:</string>
     <string name="textViewDate">Enter a date</string>
     <string name="watch_media">Access to the media</string>
-    <string name="textViewNoImage">The content is not an image</string>
+    <string name="textViewNoImage">The content is not an image\nClick the button below to access it</string>
 </resources>
